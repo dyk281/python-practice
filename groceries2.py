@@ -1,7 +1,5 @@
-#PRODUCTS
-
 import code
-import operator  # code.interact(local=locals())
+import operator
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -24,37 +22,38 @@ products = [
     {"id":18, "name": "Pizza for One Suprema Frozen Pizza", "department": "frozen", "aisle": "frozen pizza", "price": 12.50},
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
-]
+] # Products based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+
+#
+#Products
+#
 
 print("--------------")
 print("THERE ARE " + str(len(products)) + " PRODUCTS:")
 
-
 products = sorted(products, key=operator.itemgetter("name"))
 
-
-for product in products:
-   price_usd = ' (${0:.2f})'.format(product["price"])
-   print(" + " + product["name"] + price_usd)
-
+for product in products:#where did we define product??????
+    price_usd = ' ${0:.2f}'.format(product["price"])
+    print(" + " + product["name"] + price_usd)
 #
 # DEPARTMENTS
 #
-
-departments = []
+departments = []# creates an empty list called departments
 
 for product in products:
     departments.append(product["department"])
 
-unique_departments = set(departments)
-unique_departments = list(unique_departments)
-unique_departments = sorted(unique_departments)
+departments = set(departments) # overwrite as a set to get rid of duplicates...but how did it count????
+departments = list(departments) #covert/overwrite back to a list
+departments.sort()#sort the list alphabetically
 
-print("--------------")
 print("THERE ARE " + str(len(departments)) + " DEPARTMENTS:")
+print("--------------")
 
+print(sum(len(v) for v in departments.values()))
 
-for department_name in unique_departments:
-    count_of_products = departments.count(department_name)
-    print(" + " + department_name.title() + " (" + str(count_of_products) + " products)")
+#for department in departments:
+    #print(" + " + department + " (" + str(len(department)) + " products)")
 #code.interact(local=locals())
+#
